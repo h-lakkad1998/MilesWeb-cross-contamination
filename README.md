@@ -187,16 +187,12 @@ Bash
 ipcs -m | awk '$1 ~ /^0x7321/ {print $2}' | xargs -r -n1 ipcrm -m
 Note: This must be paired with killing detached lsphp / php CLI guard processes (gr_<hex>.php) and cleaning the affected accounts; otherwise, infected sites will immediately re-allocate the segments on their next HTTP hit.
 
-Disable shmop and sysvshm Extensions Globally in EasyApache / CloudLinux PHP Selector:
-
-Legitimate WordPress plugins almost never require raw System V shared memory (shmop_* / shm_*). Disabling shmop and sysvshm across all PHP versions (both lsphp and CLI) neutralizes the SC Implant's primary kernel-RAM persistence node.
+Disable shmop and sysvshm Extensions Globally in EasyApache / CloudLinux PHP Selector: Legitimate WordPress plugins almost never require raw System V shared memory (shmop_* / shm_*). Disabling shmop and sysvshm across all PHP versions (both lsphp and CLI) neutralizes the SC Implant's primary kernel-RAM persistence node.
 
 Deploy YARA / ModSecurity / Imunify360 Rules for SCV:5.1.2 (SC403):
-
 Scan /home/*/public_html/ across the server for the following high-confidence strings and file patterns:
 
 File contents: SCSHM1:, /* SCV:, /* SC_WC */, /* SC_ADV */, /* SC_DB */, /* SCOCV */, /* SC_TH */, __SC_BOOT, sc_dedup
-
 Hidden directories & replicas: wp-content/.sc_*, wp-content/.wp-object-cache-*.dat, .gr_*.php
 
 Block incoming HTTP requests containing the /?sc_=1 Service Worker heartbeat query parameter at the LiteSpeed/WAF layer.
